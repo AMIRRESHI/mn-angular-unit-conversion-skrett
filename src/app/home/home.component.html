@@ -1,0 +1,28 @@
+<nb-card>
+   <nb-card-header>Unit Converter</nb-card-header>
+   <nb-card-body>
+      <form [formGroup]="form">
+         <div class="container">
+            <select class="form-control mb-3" formControlName="property" (change)="propertyChanged()">
+            <option *ngFor="let p of properties;" [value]="p">{{p}}</option>
+            </select>
+            <div class="row">
+               <div class="col">
+                  <input class="form-control" type="number" formControlName="fromValue" (change)="calculate('from', 'to')" (keyup)="calculate('from', 'to')"/>
+                  <select class="form-control mt-1" formControlName="from" (change)="calculate('to', 'from')">
+                    <option *ngFor="let unit of units[propertyIndex]" [value]="unit">{{unit}}</option>
+                  </select>
+               </div>
+               <div class="col-1 equal-div">=</div>
+               <div class="col">
+                  <input class="form-control" type="number" formControlName="toValue" (change)="calculate('to', 'from')" (keyup)="calculate('to', 'from')"/>
+                  <select class="form-control mt-1" formControlName="to" (change)="calculate('from', 'to')">
+                    <option *ngFor="let unit of units[propertyIndex];" [value]="unit">{{unit}}</option>
+                  </select>
+               </div>
+            </div>
+         </div>
+      </form>
+   </nb-card-body>
+</nb-card>
+
